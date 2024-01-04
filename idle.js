@@ -5,14 +5,17 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-function calculateIdleTime(workHours, workMinutes, workSeconds) {
+function calculateTime(workHours, workMinutes, workSeconds, ratio) {
   const totalWorkMinutes = workHours * 60 + workMinutes + workSeconds / 60;
-  const idleMinutes = totalWorkMinutes / 6; // 10 minutes of idle for every hour of work
-  let hours = Math.floor(idleMinutes / 60);
-  let minutes = Math.floor(idleMinutes % 60);
-  let seconds = Math.floor((idleMinutes % 1) * 60);
+  const minutes = totalWorkMinutes * ratio;
+  let hours = Math.floor(minutes / 60);
+  let minutesRemainder = Math.floor(minutes % 60);
+  let seconds = Math.floor((minutes % 1) * 60);
 
-  // Format the output
+  return { hours, minutes: minutesRemainder, seconds };
+}
+
+function formatTime({ hours, minutes, seconds }) {
   let result = "";
   if (hours > 0) {
     result += `${hours}h `;
@@ -35,8 +38,10 @@ rl.question('Enter the work time (e.g., 8h 0m 0s): ', (workTime) => {
     const workMinutes = parseInt(match[2]);
     const workSeconds = parseInt(match[3]);
 
-    const idleTime = calculateIdleTime(workHours, workMinutes, workSeconds);
-    console.log(`Idle Time: ${idleTime}`);
+    const idleTime = calculateTime(workHours, workMinutes, workSeconds, 1/6);
+    const spareTime = calculateTime(workHours, workMinutes, workSeconds, 45/480);
+
+    console.log(`Idle Time: ${formatTime(idleTime)}\nSpare Time: ${formatTime(spareTime)}`);
   } else {
     console.log('Invalid input. Please enter the work time in the format: Xh Ym Zs');
   }
