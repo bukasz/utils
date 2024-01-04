@@ -25,12 +25,12 @@ function formatTime({ hours, minutes, seconds }) {
 }
 
 navigator.clipboard.readText().then(workTime => {
-    const match = workTime.match(/.*?(\d+)h (\d+)m (\d+)s.*?/);
+    const match = workTime.match(/.*?(\d+)h(?: (\d+)m)?(?: (\d+)s)?.*?/);
 
     if (match) {
     const workHours = parseInt(match[1]);
-    const workMinutes = parseInt(match[2]);
-    const workSeconds = parseInt(match[3]);
+    const workMinutes = parseInt(match[2] || '0');
+    const workSeconds = parseInt(match[3] || '0');
 
     const idleTime = calculateTime(workHours, workMinutes, workSeconds, 1/6);
     const spareTime = calculateTime(workHours, workMinutes, workSeconds, 45/480);

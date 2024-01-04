@@ -31,12 +31,21 @@ function formatTime({ hours, minutes, seconds }) {
 }
 
 rl.question('Enter the work time (e.g., 8h 0m 0s): ', (workTime) => {
-  const match = workTime.match(/(\d+)h (\d+)m (\d+)s/);
+  const match = workTime.match(/(\d+)(h|m|s)/g);
 
   if (match) {
-    const workHours = parseInt(match[1]);
-    const workMinutes = parseInt(match[2]);
-    const workSeconds = parseInt(match[3]);
+    let workHours = 0, workMinutes = 0, workSeconds = 0;
+
+    match.forEach((item) => {
+      const value = parseInt(item);
+      if (item.includes('h')) {
+        workHours = value;
+      } else if (item.includes('m')) {
+        workMinutes = value;
+      } else if (item.includes('s')) {
+        workSeconds = value;
+      }
+    });
 
     const idleTime = calculateTime(workHours, workMinutes, workSeconds, 1/6);
     const spareTime = calculateTime(workHours, workMinutes, workSeconds, 45/480);
