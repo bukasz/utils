@@ -9,12 +9,12 @@
   const module = document.createElement("script");
   module.type = "module";
   module.crossOrigin = "anonymous";
-  module.src = "https://bukasz.github.io/utils/widget/assets/index-abwghORs.js" + "?v=" + random;
+  module.src = "https://bukasz.github.io/utils/widget/assets/index-GfF3pORy.js?v=" + random;
   document.head.appendChild(module);
 
   const link = document.createElement("link");
   link.rel = "stylesheet";
   link.crossOrigin = "anonymous";
-  link.href = "https://bukasz.github.io/utils/widget/assets/index-P6GhZm0W.css" + "?v=" + random;
+  link.href = "https://bukasz.github.io/utils/widget/assets/index-XE8mReHk.css?v=" + random;
   document.head.appendChild(link);
 })();
