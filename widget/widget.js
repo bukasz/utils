@@ -9,7 +9,7 @@
   const module = document.createElement("script");
   module.type = "module";
   module.crossOrigin = "anonymous";
-  module.src = "https://bukasz.github.io/utils/widget/assets/index-a37747sf.js?v=" + random;
+  module.src = "https://bukasz.github.io/utils/widget/assets/index-E5OP50kD.js?v=" + random;
   document.head.appendChild(module);
 
   const link = document.createElement("link");
