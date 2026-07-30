@@ -1,5 +1,12 @@
 
 (function () {
+  if (window.__csWidget) window.__csWidget.unmount();
+  var old = document.getElementById("app");
+  if (old) old.remove();
+  document.querySelectorAll(
+    'script[src*="widget.js"], script[src*="/assets/index-"], script[src*="/assets/Ksef-"], link[href*="/assets/style-"], link[href*="/assets/Ksef-"]'
+  ).forEach(function (el) { el.remove(); });
+
   const app = document.createElement("div");
   app.id = "app";
   document.body.appendChild(app);
@@ -9,12 +16,12 @@
   const module = document.createElement("script");
   module.type = "module";
   module.crossOrigin = "anonymous";
-  module.src = "https://bukasz.github.io/utils/widget/assets/index-w_nmDh76.js?v=" + random;
+  module.src = "https://bukasz.github.io/utils/widget/assets/index-f3YoulEU.js?v=" + random;
   document.head.appendChild(module);
 
   const link = document.createElement("link");
   link.rel = "stylesheet";
   link.crossOrigin = "anonymous";
-  link.href = "https://bukasz.github.io/utils/widget/assets/index-keLVymZp.css?v=" + random;
+  link.href = "https://bukasz.github.io/utils/widget/assets/style-UApR5zNt.css?v=" + random;
   document.head.appendChild(link);
 })();
